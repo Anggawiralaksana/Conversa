@@ -1,0 +1,64 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    ext.kotlin_version = "1.5.0"
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.1.2'
+        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5")
+
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+        // Add the following line:
+        classpath 'com.google.gms:google-services:4.3.10'  // Google Services plugin
+    }
+}
+
+ext {
+    // androidx
+    lifecycle = '2.3.1'
+    activity = '1.2.3'
+    fragment = '1.3.5'
+    annotation = '1.2.0'
+    constraintlayout = '2.0.4'
+    navigation = '2.3.5'
+
+    coroutines = '1.5.0'
+    roomVersion = '2.3.0'
+    retrofit = '2.9.0'
+    smack = '4.4.0'
+    wav_recorder = '1.6.0'
+    uuid = '0.3.0'
+    firebase = '28.2.0'
+    groupie = '2.7.0'
+    glide = '4.12.0'
+    material = '1.4.0'
+    multidex = '2.0.1'
+    codecs = '1.10'
+    socket_io = '1.0.1'
+    json = '1.2.2'
+    compressor = '3.0.1'
+}
+
+allprojects {
+    repositories {
+        google()
+        maven {
+            url 'https://oss.sonatype.org/content/repositories/snapshots'
+        }
+
+        // Wav recording
+        maven { url "https://jitpack.io" }
+
+        mavenCentral()
+        jcenter() // Warning: this repository is going to shut down soon
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

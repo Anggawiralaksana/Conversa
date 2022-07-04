@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/conversa_nav_graph"
+    app:startDestination="@id/login">
+
+    <fragment
+        android:id="@+id/inappDialogue"
+        android:name="ai.prosa.conversa.inapp.InappDialogueFragment"
+        android:label="InappDialogue"
+        tools:layout="@layout/conversa_fragment_inapp_dialogue">
+        <action
+            android:id="@+id/action_inappDialogue_to_login"
+            app:destination="@id/login" />
+        <argument
+            android:name="userInfo1"
+            app:argType="ai.prosa.conversa.common.data.model.UserInfo" />
+        <argument
+            android:name="userInfo2"
+            app:argType="ai.prosa.conversa.common.data.model.UserInfo" />
+    </fragment>
+    <fragment
+        android:id="@+id/omniChannelDialogue"
+        android:name="ai.prosa.conversa.omnichannel.OmniChannelDialogueFragment"
+        android:label="OmniChannelDialogue">
+        <argument
+            android:name="userInfo"
+            app:argType="ai.prosa.conversa.common.data.model.UserInfo" />
+        <action
+            android:id="@+id/action_omniChannelChat_to_omniChannelLoginFragment"
+            app:destination="@id/login"
+            app:popUpTo="@id/omniChannelDialogue"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/login"
+        android:name="ai.prosa.conversa.LoginFragment"
+        android:label="OmniChannelLogin"
+        tools:layout="@layout/conversa_fragment_login">
+        <action
+            android:id="@+id/action_login_to_omniChannelDialogue"
+            app:destination="@id/omniChannelDialogue"
+            app:popUpTo="@id/login"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_login_to_inappDialogue"
+            app:destination="@id/inappDialogue"
+            app:popUpTo="@id/login"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>

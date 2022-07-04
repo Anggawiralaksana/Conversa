@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [ "$#" -ne 1 ]; then
+    echo "Usage: ./create-apk VERSION"
+    exit 1
+fi
+
+VERSION="$1"
+
+./gradlew -Dorg.gradle.java.home=/opt/android-studio/jre clean
+./gradlew -Dorg.gradle.java.home=/opt/android-studio/jre assembleDebugDevelopment
+mv ./app/build/outputs/apk/debugDevelopment/app-debugDevelopment.apk ~/Documents/apk/conversa-debug-development-v$VERSION.apk

@@ -1,0 +1,2 @@
+rootProject.name = "Conversa"
+include ':app'

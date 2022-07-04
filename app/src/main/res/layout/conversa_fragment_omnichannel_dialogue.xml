@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/Theme.Conversa">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:elevation="5dp"
+        android:paddingVertical="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="2dp">
+
+            <ImageView
+                android:id="@+id/toolbarImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="10dp"
+                android:src="@drawable/conversa_ic_avatar"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/toolbarTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="3dp"
+                android:text="Bebi"
+                android:textColor="@color/black2"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/toolbarSubTitle"
+                app:layout_constraintStart_toEndOf="@id/toolbarImage"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/toolbarSubTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Virtual Assistant Bluebird Group"
+                android:textColor="@color/blackTransparent"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/toolbarImage"
+                app:layout_constraintTop_toBottomOf="@id/toolbarTitle" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chatRecView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/dialogue_rec_view_margin_horizontal"
+        android:background="@color/dialogue_background"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@id/messageContainer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/messageContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lightGrey"
+        android:padding="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/extension"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="0dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/replyExtension"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/replyIcon"
+                    style="@style/Widget.App.Button.Borderless.IconOnly"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/conversa_ic_left_rounded_rectangle"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:minWidth="0dp"
+                    app:icon="@drawable/conversa_ic_left_round_arrow"
+                    app:iconGravity="textEnd"
+                    app:iconPadding="0dp"
+                    app:layout_constraintBottom_toBottomOf="@id/replyContainer"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/replyContainer" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/replyContainer"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@drawable/conversa_bg_reply"
+                    android:padding="0dp"
+                    android:paddingEnd="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/replyIcon"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/repliedChatName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toTopOf="@id/repliedChatText"
+                        app:layout_constraintEnd_toStartOf="@id/cancelReplyBtn"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_chainStyle="packed"
+                        tools:text="Rifki Mega" />
+
+                    <TextView
+                        android:id="@+id/repliedChatText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="10dp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:paddingEnd="10dp"
+                        android:textColor="@color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/cancelReplyBtn"
+                        app:layout_constraintHorizontal_bias="0"
+                        app:layout_constraintStart_toStartOf="@id/repliedChatName"
+                        app:layout_constraintTop_toBottomOf="@id/repliedChatName"
+                        tools:text="Halo This can be done using LayoutParams to dynamically set the Views height once your know the Views width at runtime" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/cancelReplyBtn"
+                        style="@style/Widget.App.Button.Borderless.IconOnly"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:background="@drawable/conversa_ic_x"
+                        app:backgroundTint="@color/black2"
+                        app:layout_constraintBottom_toBottomOf="@id/repliedChatName"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/repliedChatName" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/extension">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/chatContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="8dp"
+                android:paddingBottom="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnUploadDocument"
+                    style="@style/Widget.App.Button.Borderless.IconOnly"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="0dp"
+                    android:paddingHorizontal="8dp"
+                    app:icon="@drawable/conversa_ic_clip"
+                    app:iconGravity="textEnd"
+                    app:iconPadding="0dp"
+                    app:iconTint="#424242"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnUploadImage"
+                    style="@style/Widget.App.Button.Borderless.IconOnly"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="0dp"
+                    android:paddingHorizontal="8dp"
+                    app:drawableTint="#424242"
+                    app:icon="@drawable/conversa_ic_camera"
+                    app:iconGravity="textEnd"
+                    app:iconPadding="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/btnUploadDocument" />
+
+                <!--    TODO: Use view binding-->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/editMessage"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:paddingStart="8dp"
+                    app:boxBackgroundColor="@color/white"
+                    app:boxCornerRadiusBottomEnd="@dimen/message_input_corner_radius"
+                    app:boxCornerRadiusBottomStart="@dimen/message_input_corner_radius"
+                    app:boxCornerRadiusTopEnd="@dimen/message_input_corner_radius"
+                    app:boxCornerRadiusTopStart="@dimen/message_input_corner_radius"
+                    app:boxStrokeColor="@color/light_message_button_fg"
+                    app:boxStrokeWidth="@dimen/message_input_box_width"
+                    app:boxStrokeWidthFocused="@dimen/message_input_box_width"
+
+                    app:layout_constraintBottom_toBottomOf="@id/btnUploadImage"
+                    app:layout_constraintEnd_toStartOf="@id/rightButtons"
+                    app:layout_constraintStart_toEndOf="@id/btnUploadImage"
+                    app:layout_constraintTop_toTopOf="@id/btnUploadImage"
+                    tools:ignore="NotSibling">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editMessageInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingVertical="0dp"
+                        android:textColor="@color/text_input_color" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/rightButtons"
+                    app:layout_constraintStart_toEndOf="@id/btnUploadImage">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/imageReview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/conversa_bg_rounded_corner_grey"
+                        android:paddingHorizontal="10dp"
+                        android:paddingTop="10dp"
+                        android:visibility="gone"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:visibility="gone">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/imageReviewMainContent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <ImageView
+                                android:id="@+id/imageReviewImage"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:adjustViewBounds="true"
+                                android:background="@color/grey2"
+                                android:maxHeight="300dp"
+                                android:src="@drawable/conversa_ic_word"
+                                app:layout_constraintBottom_toTopOf="@id/imageIcon"
+                                app:layout_constraintStart_toStartOf="parent" />
+
+                            <ImageView
+                                android:id="@+id/imageIcon"
+                                style="@style/Widget.App.Button.Borderless.IconOnly"
+                                android:layout_width="30dp"
+                                android:layout_height="0dp"
+                                android:layout_marginEnd="20dp"
+                                android:padding="0dp"
+                                android:src="@drawable/conversa_ic_camera"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:tint="@color/grey4"
+                                tools:src="@drawable/conversa_ic_camera" />
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/imageInfo"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                app:layout_constraintBottom_toBottomOf="@id/imageIcon"
+                                app:layout_constraintEnd_toEndOf="@id/imageReviewImage"
+                                app:layout_constraintStart_toEndOf="@id/imageIcon"
+                                app:layout_constraintTop_toTopOf="@id/imageIcon">
+
+                                <TextView
+                                    android:id="@+id/reviewedImageFilename"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="end"
+                                    android:singleLine="true"
+                                    app:layout_constraintBottom_toTopOf="@id/reviewedImageFilesize"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    tools:text="Hell My Name Is Agung Baptiso Sorlawan" />
+
+                                <TextView
+                                    android:id="@+id/reviewedImageFilesize"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="6dp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toStartOf="@id/reviewedImageFilename"
+                                    app:layout_constraintTop_toBottomOf="@id/reviewedImageFilename"
+                                    tools:text="120kb" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/attachmentReview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/conversa_bg_rounded_corner_grey"
+                        android:visibility="gone"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:visibility="gone">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/attachmentIcon"
+                            style="@style/Widget.App.Button.Borderless.IconOnly"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:minWidth="0dp"
+                            android:padding="20dp"
+                            app:drawableTint="@color/grey4"
+                            app:icon="@drawable/conversa_ic_clip"
+                            app:iconGravity="textEnd"
+                            app:iconPadding="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/fileIcon"
+                            style="@style/Widget.App.Button.Borderless.IconOnly"
+                            android:layout_width="30dp"
+                            android:layout_height="0dp"
+                            android:layout_marginEnd="20dp"
+                            android:padding="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/attachmentIcon"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:src="@drawable/conversa_ic_word" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/fileInfo"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/cancelReviewBtn"
+                            app:layout_constraintStart_toEndOf="@id/fileIcon"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                android:id="@+id/reviewedFilename"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="middle"
+                                android:singleLine="true"
+                                app:layout_constraintBottom_toTopOf="@id/reviewedFilesize"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:text="Hell My Name Is Agung Baptiso Sorlawan" />
+
+                            <TextView
+                                android:id="@+id/reviewedFilesize"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="@id/reviewedFilename"
+                                app:layout_constraintTop_toBottomOf="@id/reviewedFilename"
+                                tools:text="120kb" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/cancelReviewBtn"
+                            style="@style/Widget.App.Button.Borderless.IconOnly"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:minWidth="0dp"
+                            android:padding="20dp"
+                            app:drawableTint="@color/black2"
+                            app:icon="@drawable/conversa_ic_x"
+                            app:iconGravity="textEnd"
+                            app:iconPadding="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/rightButtons"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSend"
+                        style="@style/Widget.App.Button.Borderless.IconOnly"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="0dp"
+                        android:paddingHorizontal="16dp"
+                        app:drawableTint="@color/light_message_button_fg_disabled"
+                        app:icon="@drawable/conversa_ic_send"
+                        app:iconGravity="textEnd"
+                        app:iconPadding="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/recordingContainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="0dp"
+                android:paddingEnd="15dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="gone">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnStopRecording"
+                    style="@style/Widget.App.Button.Borderless.IconOnly"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="0dp"
+                    android:visibility="visible"
+                    app:icon="@drawable/conversa_ic_stop_recording"
+                    app:iconGravity="textEnd"
+                    app:iconPadding="0dp"
+                    app:iconTint="@color/error"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <Chronometer
+                    android:id="@+id/duration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="35dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/cancelRecordingBtn"
+                    app:layout_constraintStart_toEndOf="@id/btnStopRecording"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="00:23" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/cancelRecordingBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:backgroundTint="@color/error"
+                    android:text="@string/cancel_txt"
+                    android:textAllCaps="false"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/sendBtn"
+                    app:layout_constraintStart_toEndOf="@id/duration"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/sendBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/send_txt"
+                    android:textAllCaps="false"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/cancelRecordingBtn"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

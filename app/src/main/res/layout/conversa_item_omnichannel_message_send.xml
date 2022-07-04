@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="ai.prosa.conversa.omnichannel.data.model.OmniChannelMessageState" />
+
+        <variable
+            name="message"
+            type="ai.prosa.conversa.omnichannel.data.db.OmniChannelMessage" />
+
+        <variable
+            name="isAttachment"
+            type="Boolean" />
+
+        <variable
+            name="isImage"
+            type="Boolean" />
+
+        <variable
+            name="isText"
+            type="Boolean" />
+
+        <variable
+            name="isRepliedAttachment"
+            type="Boolean" />
+
+        <variable
+            name="isRepliedImage"
+            type="Boolean" />
+
+        <variable
+            name="isRepliedText"
+            type="Boolean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/messageContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/deletedMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:textColor="@color/blackTransparent"
+                android:textStyle="italic"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="This chat has been deleted by User1" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/textMessage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible">
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/barrier1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="start"
+                    app:constraint_referenced_ids="repliedMessageText,normalMessageContainer" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/repliedMessageContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/repliedNormalMessageText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/conversa_bg_rounded_top"
+                        android:paddingHorizontal="15dp"
+                        android:paddingVertical="4dp"
+                        android:textColor="@color/light_send_message_fg"
+                        android:visibility="@{isRepliedText ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/barrier1"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="message"
+                        tools:visibility="visible" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/repliedAttachmentContainer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/conversa_bg_rounded_top"
+                        android:padding="10dp"
+                        android:visibility="@{isRepliedAttachment ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:visibility="gone">
+
+                        <ImageView
+                            android:id="@+id/repliedAttachmentIcon"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:maxWidth="20dp"
+                            android:maxHeight="20dp"
+                            android:src="@drawable/conversa_ic_word"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/repliedAttachmentText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="15dp"
+                            android:textColor="@color/light_send_message_fg"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/attachmentIcon"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="Example of "
+                            tools:visibility="visible" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/repliedImageContainer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="@{isRepliedImage ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:visibility="gone">
+
+                        <ImageView
+                            android:id="@+id/repliedImage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitXY"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:srcCompat="@tools:sample/avatars"
+                            tools:visibility="visible" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/normalMessageContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/barrier1"
+                    app:layout_constraintTop_toBottomOf="@id/repliedMessageContainer">
+
+                    <TextView
+                        android:id="@+id/normalMessageText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/conversa_bg_send_message"
+                        android:padding="15dp"
+                        android:textColor="@color/light_send_message_fg"
+                        android:visibility="@{isText ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="I have "
+                        tools:visibility="visible" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/attachmentContainer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/conversa_bg_send_message"
+                        android:padding="10dp"
+                        android:visibility="@{isAttachment ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:visibility="gone">
+
+                        <ImageView
+                            android:id="@+id/attachmentIcon"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:maxWidth="20dp"
+                            android:maxHeight="20dp"
+                            android:src="@drawable/conversa_ic_word"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/attachmentText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="15dp"
+                            android:textColor="@color/light_send_message_fg"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/attachmentIcon"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="Example of "
+                            tools:visibility="visible" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/imageContainer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="@{isImage ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:visibility="gone">
+
+                        <ImageView
+                            android:id="@+id/image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitXY"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:srcCompat="@tools:sample/avatars"
+                            tools:visibility="visible" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/overlay_image"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:background="@color/blackTransparent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <com.google.android.material.progressindicator.CircularProgressIndicator
+                            android:id="@+id/progress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:indeterminate="true"
+                            app:indicatorColor="@color/white"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHeight_max="25dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintWidth_max="25dp"
+                            app:trackColor="@color/whiteTransparent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnMessageAction"
+            style="@style/Widget.App.Button.Borderless.IconOnly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:paddingVertical="5dp"
+            app:drawableTint="@color/primary"
+            app:icon="@drawable/conversa_ic_hamburger"
+            app:iconGravity="textEnd"
+            app:iconPadding="0dp"
+            app:layout_constraintEnd_toStartOf="@id/messageContainer"
+            app:layout_constraintTop_toTopOf="@id/messageContainer" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/messageContainer"
+            app:layout_constraintEnd_toStartOf="@id/messageContainer"
+            app:layout_constraintTop_toTopOf="@id/messageContainer">
+
+            <TextView
+                android:id="@+id/timestamp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:textColor="@color/blackTransparent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="20:30" />
+
+            <ImageView
+                android:id="@+id/notSentTick"
+                android:layout_width="13dp"
+                android:layout_height="10dp"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/conversa_ic_not_sent"
+                android:visibility="@{ message.state == OmniChannelMessageState.NOT_SENT ? (message.isDeleted ? View.GONE : View.VISIBLE) :  View.GONE}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/sentTick"
+                android:layout_width="13dp"
+                android:layout_height="10dp"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/conversa_ic_tick"
+                android:visibility="@{ message.state == OmniChannelMessageState.SENT ? (message.isDeleted ? View.GONE : View.VISIBLE) :  View.GONE}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/deliveredTick"
+                android:layout_width="13dp"
+                android:layout_height="10dp"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/conversa_ic_double_tick"
+                android:visibility="@{ message.state == OmniChannelMessageState.DELIVERED ? (message.isDeleted ? View.GONE : View.VISIBLE) :  View.GONE}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/readTick"
+                android:layout_width="13dp"
+                android:layout_height="10dp"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/conversa_ic_double_tick_blue"
+                android:visibility="@{ message.state == OmniChannelMessageState.READ ? (message.isDeleted ? View.GONE : View.VISIBLE) :  View.GONE}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

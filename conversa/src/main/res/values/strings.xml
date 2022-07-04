@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="PREF_OMNICHANNEL_USERID">CONVERSA_OMNICHANNEL_USERID</string>
+    <string name="PREF_OMNICHANNEL_ACCESS_TOKEN">CONVERSA_OMNICHANNEL_ACCESS_TOKEN</string>
+    <string name="PREF_OMNICHANNEL_REFRESH_TOKEN">CONVERSA_OMNICHANNEL_REFRESH_TOKEN</string>
+    <string name="PRE_OMNICHANNEL_FILE">ai.prosa.conversa.CONVERSA_OMNICHANNEL_PREFERENCE_FILE</string>
+</resources>

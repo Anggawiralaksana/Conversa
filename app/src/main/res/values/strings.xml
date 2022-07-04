@@ -1,0 +1,70 @@
+<resources>
+    <string name="app_name">Conversa</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="auth_fail">Authentication fail!</string>
+    <string name="generic_exception_message">Exception (%s): %s</string>
+    <string name="recipient_chats_title">Group chat @%s</string>
+    <string name="edit_room_hint">Room to join</string>
+    <string name="btn_upload_image_text">Upload Image</string>
+    <string name="text_select_from_gallery">Select From Gallery</string>
+    <string name="text_take_photo">Take Photo</string>
+    <string name="btn_join_text">Join</string>
+    <string name="btn_chat_info_text">%s Chats</string>
+    <string name="add_new_message_template_txt">Add new message template</string>
+    <string name="template_left">%d Left</string>
+    <string name="new_template_message_hint">New template message</string>
+    <string name="new_message_template_title">New Message Template</string>
+    <string name="type_here_hint">Type here…</string>
+    <string name="add_txt">Add</string>
+    <string name="template_message_txt">Template Message</string>
+    <string name="edit_txt">Edit</string>
+    <string name="delete_txt">Delete</string>
+    <string name="delete_template_title_txt">Are you sure to delete this message template ?</string>
+    <string name="yes_txt">Yes</string>
+    <string name="save_txt">Save</string>
+    <string name="edit_message_txt">Edit Message</string>
+    <string name="image_txt">Image</string>
+    <string name="take_a_photo_txt">Take a photo</string>
+    <string name="add_from_gallery_txt">Add from gallery</string>
+    <string name="cancel_txt">Cancel</string>
+    <string name="send_txt">Send</string>
+    <string name="typing_indicator_text">%s is typing</string>
+
+    <string name="reply_txt">Reply</string>
+    <string name="deleted_message_txt">This chat has been deleted by %s\u0020</string>
+    <string name="file_size">%s %s</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="user_id_txt">User ID</string>
+    <string name="login_txt">Login</string>
+    <string name="copy_txt">Copy Text</string>
+
+    <string name="PREF_OMNICHANNEL_FILE">ai.prosa.conversa.PREF_FILE_OMNICHANNEL</string>
+    <string name="PREF_OMNICHANNEL_USERID">PREF_OMNICHANNEL_USERID</string>
+    <string name="PREF_OMNICHANNEL_ACCESS_TOKEN">PREF_OMNICHANNEL_ACCESS_TOKEN</string>
+    <string name="PREF_OMNICHANNEL_REFRESH_TOKEN">PREF_OMNICHANNEL_REFRESH_TOKEN</string>
+
+    <string name="PREF_INAPP_FILE">ai.prosa.conversa.PREF_FILE_INAPP</string>
+    <string name="PREF_INAPP_PASSWORD">PREF_INAPP_PASSWORD</string>
+    <string name="PREF_INAPP_USERID">PREF_INAPP_USERID</string>
+    <string name="PREF_INAPP_HOST">PREF_INAPP_HOST</string>
+    <string name="PREF_INAPP_PORT">PREF_INAPP_PORT</string>
+    <string name="PREF_INAPP_DOMAIN">PREF_INAPP_DOMAIN</string>
+
+    <string name="PREF_LOGIN_FILE">ai.prosa.conversa.PREF_FILE_LOGIN</string>
+    <string name="PREF_LOGIN_MODULE">PREF_LOGIN_MODULE</string>
+
+    <string name="inapp_txt">INAPP</string>
+    <string name="omnichannel_txt">OMNICHANNEL</string>
+    <string name="PREF_INAPP_ROOMID">PREF_INAPP_ROOM_ID</string>
+    <string name="PREF_OMNICHANNEL_NAME">PREF_OMNICHANNEL_NAME</string>
+    <string name="PREF_OMNICHANNEL_SESSION">PREF_OMNICHANNEL_SESSION</string>
+    <string name="PREF_INAPP_NAME">PREF_INAPP_NAME</string>
+    <string name="conversa_notification_channel_id">message_notification</string>
+
+</resources>

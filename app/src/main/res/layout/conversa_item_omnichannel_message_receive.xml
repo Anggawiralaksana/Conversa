@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="message"
+            type="ai.prosa.conversa.omnichannel.data.db.OmniChannelMessage" />
+
+        <variable
+            name="isAttachment"
+            type="Boolean" />
+
+        <variable
+            name="isImage"
+            type="Boolean" />
+
+        <variable
+            name="isText"
+            type="Boolean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/messageContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/deletedMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:textColor="@color/blackTransparent"
+                android:textStyle="italic"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="This chat has been deleted by Agung" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/textMessage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible">
+
+                <TextView
+                    android:id="@+id/repliedMessageText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/conversa_bg_rounded_top"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="4dp"
+                    android:textColor="@color/light_send_message_fg"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Example of received message"
+                    tools:visibility="gone" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/normalMessageContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/repliedMessageText">
+
+                    <TextView
+                        android:id="@+id/normalMessageText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/conversa_bg_receive_message"
+                        android:padding="15dp"
+                        android:textColor="@color/light_receive_message_fg"
+                        android:visibility="@{isText ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Example of "
+                        tools:visibility="gone" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/attachmentContainer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/conversa_bg_receive_message"
+                        android:padding="10dp"
+                        android:visibility="@{isAttachment ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/attachmentIcon"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:maxWidth="20dp"
+                            android:maxHeight="20dp"
+                            android:src="@drawable/conversa_ic_word"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/attachmentText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="15dp"
+                            android:textColor="@color/light_receive_message_fg"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/attachmentIcon"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="Example of "
+                            tools:visibility="visible" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <ImageView
+                        android:id="@+id/image"
+                        android:layout_width="175dp"
+                        android:layout_height="wrap_content"
+                        android:visibility="@{isImage ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:layout_editor_absoluteX="298dp"
+                        tools:layout_editor_absoluteY="19dp"
+                        tools:srcCompat="@tools:sample/avatars"
+                        tools:visibility="gone" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnMessageAction"
+            style="@style/Widget.App.Button.Borderless.IconOnly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:paddingVertical="5dp"
+            app:drawableTint="@color/primary"
+            app:icon="@drawable/conversa_ic_hamburger"
+            app:iconGravity="textEnd"
+            app:iconPadding="0dp"
+            app:layout_constraintStart_toStartOf="@+id/timestamp"
+            app:layout_constraintTop_toTopOf="@id/messageContainer"/>
+
+
+        <TextView
+            android:id="@+id/timestamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/blackTransparent"
+            app:layout_constraintBottom_toBottomOf="@id/messageContainer"
+            app:layout_constraintStart_toEndOf="@id/messageContainer"
+            tools:text="20:30" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

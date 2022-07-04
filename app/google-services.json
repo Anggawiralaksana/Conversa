@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "495201739537",
+    "project_id": "chatbot-bca",
+    "storage_bucket": "chatbot-bca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:495201739537:android:462ca7994e2991289d62b0",
+        "android_client_info": {
+          "package_name": "ai.prosa.conversa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "495201739537-g5k76674m5b1vbv067qp2d6n2sig7sl6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDki2sS-WW9TGvBy73VSDTYvEeTxVKf7z8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "495201739537-g5k76674m5b1vbv067qp2d6n2sig7sl6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

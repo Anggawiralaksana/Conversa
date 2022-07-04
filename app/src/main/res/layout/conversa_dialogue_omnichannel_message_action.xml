@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/conversa_bg_rounded_corner_white"
+    android:paddingHorizontal="20dp"
+    android:paddingVertical="10dp"
+    android:theme="@style/Theme.Conversa">
+
+
+    <TextView
+        android:id="@+id/replyBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingVertical="15dp"
+        android:text="@string/reply_txt"
+        android:textAllCaps="false"
+        android:textColor="@color/black2"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/divider1"
+        style="@style/Divider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        app:layout_constraintBottom_toBottomOf="@id/replyBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/copyBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingVertical="15dp"
+        android:text="@string/copy_txt"
+        android:textAllCaps="false"
+        android:textColor="@color/black2"
+        android:textSize="18sp"
+        app:backgroundTint="@color/error"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider1" />
+
+    <View
+        android:id="@+id/divider2"
+        style="@style/Divider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        app:layout_constraintBottom_toBottomOf="@id/copyBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/deleteBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingVertical="15dp"
+        android:text="@string/delete_txt"
+        android:textAllCaps="false"
+        android:textColor="@color/grey6"
+        android:textSize="18sp"
+        app:backgroundTint="@color/error"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider2" />
+</androidx.constraintlayout.widget.ConstraintLayout>
